@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credenciales · Cénit Digital</title>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 para modales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- Canvas Confetti -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #0B1120;
+            min-height: 100vh;
+            background-image: radial-gradient(circle at 20% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 30%),
+                              radial-gradient(circle at 90% 70%, rgba(59, 130, 246, 0.02) 0%, transparent 35%);
+        }
+
+        /* ===== NAVBAR ===== */
+        .navbar {
+            background: rgba(31, 41, 55, 0.85);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            width: 100%;
+        }
+
+        .navbar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .navbar-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .logo-icon i {
+            font-size: 1.5rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 10px #3B82F6);
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.5rem;
+            background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            font-size: 1.2rem;
+            color: #A0B3D9;
+            margin-left: 0.2rem;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: rgba(240, 249, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            width: 45px;
+            height: 45px;
+            color: #F0F9FF;
+            cursor: pointer;
+            backdrop-filter: blur(4px);
+        }
+
+        .nav-menu {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 1.8rem;
+        }
+
+        .nav-link {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            color: #F0F9FF;
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 0.5rem 0;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link span {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3B82F6;
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px #3B82F6;
+        }
+
+        .nav-link:hover span {
+            width: 100%;
+        }
+
+        .nav-link:hover {
+            color: #3B82F6;
+        }
+
+        .btn-contacto {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3B82F6;
+            color: #F0F9FF;
+            padding: 0.6rem 1.5rem;
+            border-radius: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-contacto:hover {
+            background: #3B82F6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #3B82F6;
+        }
+
+        /* ===== CONTENIDO PRINCIPAL ===== */
+        .main-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1.5rem;
+            min-height: calc(100vh - 80px);
+        }
+
+        .credentials-card {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(31, 41, 55, 0.75);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 30px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6);
+            padding: 3rem;
+            transition: all 0.3s ease;
+        }
+
+        .credentials-card:hover {
+            border-color: #3B82F6;
+            box-shadow: 0 30px 50px -15px #3B82F6;
+        }
+
+        .header-section {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .header-icon {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 1.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #3B82F6;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 20px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .header-icon i {
+            font-size: 3.5rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 15px #3B82F6);
+        }
+
+        .header-section h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.5rem;
+            background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        .header-section .sub {
+            color: #9BB5D9;
+            font-size: 1.1rem;
+        }
+
+        .header-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin: 1.5rem 0;
+        }
+
+        .header-dots span {
+            width: 8px;
+            height: 8px;
+            background: #3B82F6;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #3B82F6;
+            opacity: 0.6;
+        }
+
+        /* Grid de tres columnas */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Columna izquierda - Credenciales */
+        .credentials-section {
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            padding: 1.8rem;
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #F0F9FF;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+            padding-bottom: 0.8rem;
+        }
+
+        .section-title i {
+            color: #3B82F6;
+        }
+
+        .url-section {
+            background: rgba(59, 130, 246, 0.08);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .url-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #F0F9FF;
+            font-size: 0.9rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .url-label i {
+            color: #3B82F6;
+        }
+
+        .url-box {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+        }
+
+        .url-input {
+            flex: 1;
+            background: rgba(240, 249, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            color: #F0F9FF;
+            font-size: 0.9rem;
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .btn-copy {
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3B82F6;
+            color: #F0F9FF;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-copy:hover {
+            background: #3B82F6;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px -5px #3B82F6;
+        }
+
+        .credentials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .credential-item {
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            padding: 1.2rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .credential-item:hover {
+            border-color: #3B82F6;
+            transform: translateX(5px);
+            box-shadow: 0 10px 20px -15px #3B82F6;
+        }
+
+        .credential-icon {
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .credential-icon i {
+            font-size: 1.5rem;
+            color: #3B82F6;
+        }
+
+        .credential-info {
+            flex: 1;
+        }
+
+        .credential-role {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            color: #F0F9FF;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .credential-details {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .credential-username {
+            color: #9BB5D9;
+            font-size: 0.85rem;
+        }
+
+        .credential-password {
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 20px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.8rem;
+            color: #3B82F6;
+            font-family: monospace;
+        }
+
+        .btn-copy-credential {
+            background: transparent;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            color: #F0F9FF;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .btn-copy-credential:hover {
+            background: #3B82F6;
+            border-color: #3B82F6;
+        }
+
+        /* Columna central - Integrantes con notas individuales */
+        .team-section {
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            padding: 1.8rem;
+        }
+
+        .integrantes-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .integrante-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.05);
+            border-radius: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .integrante-item:hover {
+            background: rgba(59, 130, 246, 0.1);
+            transform: translateX(5px);
+        }
+
+        .integrante-avatar {
+            width: 45px;
+            height: 45px;
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #3B82F6;
+            font-weight: 600;
+            border: 2px solid #3B82F6;
+        }
+
+        .integrante-info {
+            flex: 2;
+        }
+
+        .integrante-nombre {
+            color: #F0F9FF;
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .integrante-rol {
+            color: #9BB5D9;
+            font-size: 0.75rem;
+        }
+
+        .nota-individual {
+            width: 70px;
+            background: rgba(240, 249, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 10px;
+            padding: 0.4rem;
+            color: #F0F9FF;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .nota-individual:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .grupo-badge {
+            display: inline-block;
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid #3B82F6;
+            border-radius: 30px;
+            padding: 0.3rem 1rem;
+            font-size: 0.8rem;
+            color: #F0F9FF;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Columna derecha - Profesor y enlaces */
+        .profesor-section {
+            background: rgba(59, 130, 246, 0.08);
+            border: 2px solid #3B82F6;
+            border-radius: 20px;
+            padding: 1.8rem;
+            height: fit-content;
+        }
+
+        .profesor-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .profesor-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(59, 130, 246, 0.15);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #3B82F6;
+        }
+
+        .profesor-titulo h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            color: #F0F9FF;
+            font-size: 1.2rem;
+        }
+
+        .profesor-titulo p {
+            color: #9BB5D9;
+            font-size: 0.85rem;
+        }
+
+        .promedio-section {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .promedio-label {
+            color: #9BB5D9;
+            font-size: 0.9rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .promedio-valor {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2rem;
+            color: #3B82F6;
+            text-shadow: 0 0 10px #3B82F6;
+        }
+
+        .sugerencia-textarea {
+            width: 100%;
+            background: rgba(240, 249, 255, 0.05);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            color: #F0F9FF;
+            min-height: 100px;
+            margin-bottom: 1rem;
+            resize: vertical;
+        }
+
+        .sugerencia-textarea:focus {
+            outline: none;
+            border-color: #3B82F6;
+            background: rgba(59, 130, 246, 0.1);
+        }
+
+        .captura-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(59, 130, 246, 0.1);
+            border: 1px solid #3B82F6;
+            border-radius: 12px;
+            padding: 0.8rem 1rem;
+            color: #F0F9FF;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            margin: 1rem 0;
+        }
+
+        .captura-link:hover {
+            background: #3B82F6;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #3B82F6;
+        }
+
+        .captura-link i {
+            font-size: 1.2rem;
+        }
+
+        .btn-enviar {
+            background: #3B82F6;
+            border: none;
+            border-radius: 30px;
+            padding: 0.8rem 1.5rem;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        .btn-enviar:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #3B82F6;
+        }
+
+        .security-note {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid #ef4444;
+            border-radius: 12px;
+            padding: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .footer-note {
+            text-align: center;
+            color: #5F7A9F;
+            font-size: 0.85rem;
+            margin-top: 2rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .footer-note span {
+            color: #3B82F6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1000px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .nav-menu {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                background: rgba(31, 41, 55, 0.95);
+                backdrop-filter: blur(12px);
+                border: 1px solid rgba(59, 130, 246, 0.2);
+                border-radius: 20px;
+                padding: 1.5rem;
+                margin-top: 1rem;
+            }
+
+            .nav-menu.show {
+                display: flex;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.5rem;
+            }
+
+            .nav-link {
+                display: block;
+                padding: 0.8rem;
+                text-align: center;
+                background: rgba(240, 249, 255, 0.02);
+                border-radius: 12px;
+            }
+
+            .credentials-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .header-section h1 {
+                font-size: 2rem;
+            }
+
+            .url-box {
+                flex-direction: column;
+            }
+
+            .btn-copy {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .integrante-item {
+                flex-wrap: wrap;
+            }
+
+            .nota-individual {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <a href="#" class="logo-link">
+                    <div class="logo-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div>
+                        <span class="logo-text">CÉNIT</span>
+                        <span class="logo-sub">SHARE</span>
+                    </div>
+                </a>
+
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div class="nav-menu" id="navMenu">
+                    <div class="nav-links">
+                        <a href="inicio.html" class="nav-link">
+                            Inicio
+                            <span></span>
+                        </a>
+                        <a href="#" class="nav-link">
+                            Credenciales
+                            <span></span>
+                        </a>
+                        <a href="#" class="nav-link">
+                            Ayuda
+                            <span></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <div class="main-wrapper">
+        <div class="credentials-card" id="credentialsCard">
+            <div class="header-section">
+                <div class="header-icon">
+                    <i class="fas fa-key"></i>
+                </div>
+                <h1>Syntax Code</h1>
+                <div class="sub">Grupo de Desarrollo · Cénit Digital</div>
+                <div class="header-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Grid de tres columnas -->
+            <div class="content-grid">
+                <!-- Columna izquierda: Credenciales -->
+                <div class="credentials-section">
+                    <div class="section-title">
+                        <i class="fas fa-lock"></i> Accesos al Sistema
+                    </div>
+
+                    <!-- Sección de URL -->
+                    <div class="url-section">
+                        <div class="url-label">
+                            <i class="fas fa-link"></i>
+                            <span>URL de acceso compartido:</span>
+                        </div>
+                        <div class="url-box">
+                            <input type="text" class="url-input" id="shareUrl" value="https://jarquin1805-debug.github.io/trabajo_de_programacion/trabajo/inicio.html" readonly>
+                            <button class="btn-copy" onclick="copiarUrl()">
+                                <i class="fas fa-copy"></i> Copiar
+                            </button>
+                        </div>
+                        <div style="margin-top: 0.8rem; font-size: 0.8rem; color: #9BB5D9;">
+                            <i class="fas fa-info-circle"></i> URL activa por 7 días
+                        </div>
+                    </div>
+
+                    <!-- Credenciales -->
+                    <div class="credentials-grid">
+                        <!-- Administrador -->
+                        <div class="credential-item">
+                            <div class="credential-icon">
+                                <i class="fas fa-crown"></i>
+                            </div>
+                            <div class="credential-info">
+                                <div class="credential-role">Administrador</div>
+                                <div class="credential-details">
+                                    <span class="credential-username">AdJespinoza</span>
+                                    <span class="credential-password">admin123</span>
+                                    <button class="btn-copy-credential" onclick="copiarCredencial('admin')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Docente -->
+                        <div class="credential-item">
+                            <div class="credential-icon">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                            </div>
+                            <div class="credential-info">
+                                <div class="credential-role">Docente</div>
+                                <div class="credential-details">
+                                    <span class="credential-username">DoNesAguilar</span>
+                                    <span class="credential-password">docente123</span>
+                                    <button class="btn-copy-credential" onclick="copiarCredencial('docente')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Estudiante -->
+                        <div class="credential-item">
+                            <div class="credential-icon">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div class="credential-info">
+                                <div class="credential-role">Estudiante</div>
+                                <div class="credential-details">
+                                    <span class="credential-username">Naaguilar</span>
+                                    <span class="credential-password">estudiante123</span>
+                                    <button class="btn-copy-credential" onclick="copiarCredencial('estudiante')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna central: Integrantes con notas individuales -->
+                <div class="team-section">
+                    <div class="section-title">
+                        <i class="fas fa-users"></i> Syntax Code
+                    </div>
+
+                    <div class="grupo-badge">
+                        <i class="fas fa-code"></i> Grupo #4
+                    </div>
+
+                    <!-- Lista de integrantes con campos de nota individual -->
+                    <div class="integrantes-list">
+                        <!-- Nadyuska -->
+                        <div class="integrante-item">
+                            <div class="integrante-avatar">NA</div>
+                            <div class="integrante-info">
+                                <div class="integrante-nombre">Nadyuska Jessenia Arroliga Busto</div>
+                                <div class="integrante-rol">Desarrolladora Frontend</div>
+                            </div>
+                            <input type="number" id="notaNadyuska" class="nota-individual" min="0" max="100" placeholder="Nota">
+                        </div>
+
+                        <!-- Nestor -->
+                        <div class="integrante-item">
+                            <div class="integrante-avatar">NJ</div>
+                            <div class="integrante-info">
+                                <div class="integrante-nombre">Nestor Jahir Arroliga Busto</div>
+                                <div class="integrante-rol">Desarrollador Backend</div>
+                            </div>
+                            <input type="number" id="notaNestor" class="nota-individual" min="0" max="100" placeholder="Nota">
+                        </div>
+
+                        <!-- Tommy -->
+                        <div class="integrante-item">
+                            <div class="integrante-avatar">TC</div>
+                            <div class="integrante-info">
+                                <div class="integrante-nombre">Tommy Christin Chalupa Monroy</div>
+                                <div class="integrante-rol">Diseñador UI/UX</div>
+                            </div>
+                            <input type="number" id="notaTommy" class="nota-individual" min="0" max="100" placeholder="Nota">
+                        </div>
+
+                        <!-- José Luis -->
+                        <div class="integrante-item">
+                            <div class="integrante-avatar">JL</div>
+                            <div class="integrante-info">
+                                <div class="integrante-nombre">José Luis Espinoza Jarquin</div>
+                                <div class="integrante-rol">Líder de Proyecto</div>
+                            </div>
+                            <input type="number" id="notaJose" class="nota-individual" min="0" max="100" placeholder="Nota">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Profesor y evaluación -->
+                <div class="profesor-section">
+                    <div class="profesor-header">
+                        <div class="profesor-icon">
+                            <i class="fas fa-user-tie"></i>
+                        </div>
+                        <div class="profesor-titulo">
+                            <h3>Evaluación Individual</h3>
+                            <p>Ing. Francisco Mendieta · Docente</p>
+                        </div>
+                    </div>
+
+                    <!-- Promedio automático -->
+                    <div class="promedio-section">
+                        <div class="promedio-label">Promedio del Grupo</div>
+                        <div class="promedio-valor" id="promedioGrupo">0</div>
+                    </div>
+
+                    <!-- Sugerencia general -->
+                    <div style="margin-bottom: 1rem;">
+                        <label style="color: #F0F9FF; font-size: 0.9rem; margin-bottom: 0.3rem; display: block;">
+                            <i class="fas fa-comment"></i> Sugerencia para el grupo
+                        </label>
+                        <textarea id="sugerencia" class="sugerencia-textarea" placeholder="Escriba sus comentarios y sugerencias..."></textarea>
+                    </div>
+
+                    <!-- Enlace para captura -->
+                    <a href="https://drive.google.com/drive/folders/1pEZkjEO-fBaLaGqqZYA3Vd65E-wTsU9t?usp=sharing" 
+                       target="_blank" 
+                       class="captura-link">
+                        <i class="fas fa-camera"></i>
+                        <span>Subir captura de pantalla</span>
+                        <i class="fas fa-external-link-alt" style="margin-left: auto;"></i>
+                    </a>
+
+                    <!-- Botón enviar -->
+                    <button class="btn-enviar" onclick="enviarEvaluacionIndividual()">
+                        <i class="fas fa-paper-plane"></i> Enviar Evaluación
+                    </button>
+                </div>
+            </div>
+
+            <!-- Nota de seguridad -->
+            <div class="security-note">
+                <div style="display: flex; gap: 0.5rem; align-items: center; color: #f87171;">
+                    <i class="fas fa-shield-alt"></i>
+                    <span style="font-weight: 600;">Seguridad:</span>
+                </div>
+                <p style="color: #9BB5D9; margin-top: 0.5rem; font-size: 0.9rem;">
+                    Estas credenciales son de prueba. Por razones de seguridad, cambia las contraseñas después del primer acceso.
+                </p>
+            </div>
+
+            <div class="footer-note">
+                <span>⏄</span> SYNTAX CODE · PROYECTO CÉNIT DIGITAL 2025 <span>⏄</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div style="position: fixed; bottom: 10%; left: 5%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(30px);"></div>
+    <div style="position: fixed; top: 10%; right: 8%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+
+    <script>
+        // ===== CONFETI DE BIENVENIDA =====
+        function lanzarConfeti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#3B82F6', '#F0F9FF', '#1F2937', '#60A5FA']
+            });
+
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 60,
+                    spread: 55,
+                    origin: { x: 0, y: 0.5 },
+                    colors: ['#3B82F6', '#F0F9FF']
+                });
+            }, 250);
+
+            setTimeout(() => {
+                confetti({
+                    particleCount: 50,
+                    angle: 120,
+                    spread: 55,
+                    origin: { x: 1, y: 0.5 },
+                    colors: ['#3B82F6', '#F0F9FF']
+                });
+            }, 400);
+        }
+
+        // ===== COPIAR URL =====
+        function copiarUrl() {
+            const urlInput = document.getElementById('shareUrl');
+            urlInput.select();
+            document.execCommand('copy');
+            
+            Swal.fire({
+                icon: 'success',
+                title: 'URL copiada',
+                text: 'La URL ha sido copiada al portapapeles',
+                timer: 1500,
+                showConfirmButton: false,
+                background: '#1F2937',
+                color: '#F0F9FF'
+            });
+        }
+
+        // ===== COPIAR CREDENCIALES =====
+        function copiarCredencial(rol) {
+            let texto = '';
+            
+            if (rol === 'admin') {
+                texto = 'Usuario: AdJespinoza\nContraseña: admin123';
+            } else if (rol === 'docente') {
+                texto = 'Usuario: DoNesAguilar\nContraseña: docente123';
+            } else if (rol === 'estudiante') {
+                texto = 'Usuario: Naaguilar\nContraseña: estudiante123';
+            }
+
+            navigator.clipboard.writeText(texto).then(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Credenciales copiadas!',
+                    html: `Las credenciales de <strong>${rol}</strong> están en el portapapeles`,
+                    timer: 2000,
+                    showConfirmButton: false,
+                    background: '#1F2937',
+                    color: '#F0F9FF'
+                });
+            });
+        }
+
+        // ===== CALCULAR PROMEDIO =====
+        function calcularPromedio() {
+            const notas = [
+                parseFloat(document.getElementById('notaNadyuska').value) || 0,
+                parseFloat(document.getElementById('notaNestor').value) || 0,
+                parseFloat(document.getElementById('notaTommy').value) || 0,
+                parseFloat(document.getElementById('notaJose').value) || 0
+            ];
+
+            const suma = notas.reduce((a, b) => a + b, 0);
+            const promedio = (suma / 4).toFixed(1);
+            document.getElementById('promedioGrupo').textContent = promedio;
+            
+            return { notas, promedio };
+        }
+
+        // ===== ENVIAR EVALUACIÓN INDIVIDUAL =====
+        function enviarEvaluacionIndividual() {
+            const notas = [
+                document.getElementById('notaNadyuska').value,
+                document.getElementById('notaNestor').value,
+                document.getElementById('notaTommy').value,
+                document.getElementById('notaJose').value
+            ];
+
+            const sugerencia = document.getElementById('sugerencia').value;
+
+            // Validar que todas las notas estén ingresadas
+            if (notas.some(nota => !nota)) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Notas incompletas',
+                    text: 'Por favor ingrese la nota de todos los integrantes',
+                    background: '#1F2937',
+                    color: '#F0F9FF'
+                });
+                return;
+            }
+
+            if (!sugerencia) {
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Sugerencia requerida',
+                    text: 'Por favor ingrese una sugerencia para el grupo',
+                    background: '#1F2937',
+                    color: '#F0F9FF'
+                });
+                return;
+            }
+
+            const { promedio } = calcularPromedio();
+
+            // Mostrar resumen de calificaciones
+            Swal.fire({
+                title: 'Evaluación Enviada',
+                html: `
+                    <div style="text-align: left;">
+                        <p><strong>📊 Calificaciones:</strong></p>
+                        <p>• Nadyuska: ${notas[0]}</p>
+                        <p>• Nestor: ${notas[1]}</p>
+                        <p>• Tommy: ${notas[2]}</p>
+                        <p>• José Luis: ${notas[3]}</p>
+                        <p style="margin-top: 10px;"><strong>📈 Promedio: ${promedio}</strong></p>
+                        <p style="margin-top: 10px;"><strong>💬 Sugerencia:</strong> ${sugerencia}</p>
+                    </div>
+                `,
+                icon: 'success',
+                background: '#1F2937',
+                color: '#F0F9FF',
+                confirmButtonColor: '#3B82F6'
+            });
+        }
+
+        // ===== MENÚ MÓVIL =====
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+
+        // ===== INICIALIZACIÓN =====
+        window.onload = function() {
+            lanzarConfeti();
+            
+            // Agregar event listeners para calcular promedio automáticamente
+            document.getElementById('notaNadyuska').addEventListener('input', calcularPromedio);
+            document.getElementById('notaNestor').addEventListener('input', calcularPromedio);
+            document.getElementById('notaTommy').addEventListener('input', calcularPromedio);
+            document.getElementById('notaJose').addEventListener('input', calcularPromedio);
+            
+            setTimeout(() => {
+                Swal.fire({
+                    icon: 'success',
+                    title: '¡Bienvenido Syntax Code!',
+                    html: 'Sistema de evaluación individual para cada integrante',
+                    timer: 2000,
+                    showConfirmButton: false,
+                    background: '#1F2937',
+                    color: '#F0F9FF'
+                });
+            }, 500);
+        };
+
+        // Cerrar menú al hacer clic fuera
+        window.addEventListener('click', function(event) {
+            const menu = document.getElementById('navMenu');
+            const toggle = document.querySelector('.menu-toggle');
+            if (menu && toggle && !menu.contains(event.target) && !toggle.contains(event.target) && menu.classList.contains('show')) {
+                menu.classList.remove('show');
+            }
+        });
+    </script>
+</body>
+</html>
