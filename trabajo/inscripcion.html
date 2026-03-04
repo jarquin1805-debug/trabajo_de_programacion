@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Asignaturas · Zenith Academy</title>
+    <!-- Fuentes: Montserrat (bold) y Poppins (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<link rel="stylesheet" href="styless_inscripcion.css">
+</head>
+<body>
+    <div class="subject-register-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="brand-icon">
+                <i class="fas fa-book-open"></i>
+            </div>
+            <h1>REGISTRO DE ASIGNATURAS</h1>
+            <div class="sub">ZENITH ACADEMY · PERÍODO 2025</div>
+            <div class="header-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Grid principal -->
+        <div class="register-grid">
+            <!-- Columna izquierda: Formulario de datos -->
+            <div class="form-column">
+                <div class="section-title">
+                    <i class="fas fa-user-graduate"></i> Datos del estudiante
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-id-card"></i> Número de identificación</label>
+                    <input type="text" class="form-control" placeholder="Ej: 12345678-9" value="18.456.789-2" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Nombres</label>
+                        <input type="text" class="form-control" placeholder="Tus nombres" value="Ana María">
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-user"></i> Apellidos</label>
+                        <input type="text" class="form-control" placeholder="Tus apellidos" value="González Torres">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Correo institucional</label>
+                    <input type="email" class="form-control" placeholder="correo@estudiante.zenith" value="ana.gonzalez@estudiante.zenith">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label><i class="fas fa-layer-group"></i> Semestre</label>
+                        <select class="form-control">
+                            <option>Primer semestre</option>
+                            <option selected>Segundo semestre</option>
+                            <option>Tercer semestre</option>
+                            <option>Cuarto semestre</option>
+                            <option>Quinto semestre</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label><i class="fas fa-clock"></i> Año académico</label>
+                        <select class="form-control">
+                            <option>2024</option>
+                            <option selected>2025</option>
+                            <option>2026</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="focus-dots">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Columna derecha: Asignaturas disponibles -->
+            <div class="subjects-column">
+                <div class="section-title">
+                    <i class="fas fa-cubes"></i> Asignaturas disponibles
+                </div>
+
+                <div class="subjects-list" id="subjectsList">
+                    <!-- Las asignaturas se cargarán aquí con JavaScript -->
+                </div>
+
+                <!-- Resumen de inscripción -->
+                <div class="summary-box">
+                    <div class="summary-title">
+                        <i class="fas fa-clipboard-list"></i> Resumen de inscripción
+                    </div>
+                    <div id="selectedSubjectsSummary">
+                        <div class="summary-item">
+                            <span>Asignaturas seleccionadas:</span>
+                            <span id="selectedCount">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span>Créditos totales:</span>
+                            <span id="totalCredits">0</span>
+                        </div>
+                    </div>
+                    <div class="summary-total">
+                        <span>Máximo permitido:</span>
+                        <span>24 créditos</span>
+                    </div>
+                </div>
+
+                <!-- Botón de registro -->
+                <button class="register-btn" onclick="confirmarRegistro()">
+                    <i class="fas fa-check-circle"></i> Confirmar inscripción
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <span>⏄</span>  REGISTRO ACADÉMICO · PERÍODO ORDINARIO  <span>⏄</span>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div style="position: fixed; bottom: 10%; left: 5%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(30px);"></div>
+    <div style="position: fixed; top: 10%; right: 8%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+
+    <script>
+        // Base de datos de asignaturas
+        const subjects = [
+            { id: 1, nombre: 'Inteligencia Artificial Avanzada', codigo: 'IA-401', creditos: 6, cupos: 25, horario: 'Lun y Mié 10:00-12:00' },
+            { id: 2, nombre: 'Ciberseguridad Ética', codigo: 'CS-301', creditos: 5, cupos: 20, horario: 'Mar y Jue 14:00-16:00' },
+            { id: 3, nombre: 'Desarrollo Full Stack', codigo: 'WEB-402', creditos: 8, cupos: 30, horario: 'Lun y Mié 16:00-18:00' },
+            { id: 4, nombre: 'Cloud Computing', codigo: 'CLD-201', creditos: 4, cupos: 35, horario: 'Vie 09:00-13:00' },
+            { id: 5, nombre: 'Big Data Analytics', codigo: 'DTS-301', creditos: 6, cupos: 20, horario: 'Mar y Jue 10:00-12:00' },
+            { id: 6, nombre: 'Blockchain y Cripto', codigo: 'BCK-401', creditos: 5, cupos: 15, horario: 'Mié y Vie 14:00-16:00' },
+            { id: 7, nombre: 'Ética en Tecnología', codigo: 'HUM-101', creditos: 2, cupos: 40, horario: 'Lun 14:00-16:00' },
+            { id: 8, nombre: 'Robótica Industrial', codigo: 'ROB-301', creditos: 6, cupos: 18, horario: 'Jue 08:00-12:00' }
+        ];
+
+        // Estado de selección
+        let selectedSubjects = [];
+
+        // Renderizar lista de asignaturas
+        function renderSubjects() {
+            const container = document.getElementById('subjectsList');
+            container.innerHTML = '';
+
+            subjects.forEach(subject => {
+                const isSelected = selectedSubjects.some(s => s.id === subject.id);
+                
+                const item = document.createElement('div');
+                item.className = `subject-item ${isSelected ? 'selected' : ''}`;
+                item.onclick = () => toggleSubject(subject);
+
+                item.innerHTML = `
+                    <div class="subject-check">
+                        ${isSelected ? '<i class="fas fa-check"></i>' : ''}
+                    </div>
+                    <div class="subject-info">
+                        <h4>${subject.nombre}</h4>
+                        <p>
+                            <span><i class="fas fa-code"></i> ${subject.codigo}</span>
+                            <span><i class="fas fa-users"></i> ${subject.cupos} cupos</span>
+                            <span><i class="fas fa-clock"></i> ${subject.horario}</span>
+                        </p>
+                    </div>
+                    <div class="subject-credits">
+                        ${subject.creditos} créditos
+                    </div>
+                `;
+
+                container.appendChild(item);
+            });
+
+            updateSummary();
+        }
+
+        // Toggle selección de asignatura
+        function toggleSubject(subject) {
+            const index = selectedSubjects.findIndex(s => s.id === subject.id);
+            
+            if (index === -1) {
+                // Verificar límite de créditos (máximo 24)
+                const totalCredits = selectedSubjects.reduce((sum, s) => sum + s.creditos, 0);
+                if (totalCredits + subject.creditos > 24) {
+                    alert('⚠️ Has alcanzado el límite máximo de 24 créditos');
+                    return;
+                }
+                selectedSubjects.push(subject);
+            } else {
+                selectedSubjects.splice(index, 1);
+            }
+
+            renderSubjects();
+        }
+
+        // Actualizar resumen
+        function updateSummary() {
+            const count = selectedSubjects.length;
+            const totalCredits = selectedSubjects.reduce((sum, s) => sum + s.creditos, 0);
+            
+            document.getElementById('selectedCount').textContent = count;
+            document.getElementById('totalCredits').textContent = totalCredits;
+        }
+
+        // Confirmar registro
+        function confirmarRegistro() {
+            if (selectedSubjects.length === 0) {
+                alert('❌ Debes seleccionar al menos una asignatura');
+                return;
+            }
+
+            const nombres = document.querySelector('input[placeholder="Tus nombres"]').value;
+            const apellidos = document.querySelector('input[placeholder="Tus apellidos"]').value;
+            
+            let mensaje = `✅ ¡Inscripción exitosa para ${nombres} ${apellidos}!\n\n`;
+            mensaje += `Asignaturas seleccionadas (${selectedSubjects.length}):\n`;
+            
+            selectedSubjects.forEach(s => {
+                mensaje += `• ${s.nombre} (${s.creditos} créditos)\n`;
+            });
+            
+            mensaje += `\nTotal créditos: ${selectedSubjects.reduce((sum, s) => sum + s.creditos, 0)}`;
+            
+            alert(mensaje);
+        }
+
+        // Inicializar
+        renderSubjects();
+    </script>
+</body>
+</html>

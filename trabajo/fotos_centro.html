@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fotos del Centro · Zenith Campus</title>
+    <!-- Fuentes: Montserrat (bold) y Poppins (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   <link rel="stylesheet" href="styless_fotos.css">
+</head>
+<body>
+     <nav class="navbar">
+        <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                <!-- Logo -->
+                <a href="#" style="display: flex; align-items: center; gap: 0.8rem; text-decoration: none;">
+                    <div style="width: 45px; height: 45px; background: rgba(59, 130, 246, 0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); border: 1px solid rgba(59, 130, 246, 0.25);">
+                        <i class="fas fa-book-open" style="font-size: 1.5rem; color: #3B82F6; filter: drop-shadow(0 0 10px #3B82F6);"></i>
+                    </div>
+                    <div>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%); -webkit-background-clip: text; background-clip: text; color: transparent;">CENIT</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1.2rem; color: #A0B3D9;"> Tecnológico</span>
+                    </div>
+                </a>
+
+                <button id="menuToggle" style="display: none; background: rgba(240, 249, 255, 0.03); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; width: 45px; height: 45px; color: #F0F9FF; cursor: pointer; backdrop-filter: blur(4px);" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div id="navMenu" style="display: flex; align-items: center; gap: 2rem;">
+                    <div style="display: flex; gap: 1.8rem;">
+                        <a href="inicio.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Inicio
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="cursos_tecnologicos.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Cursos
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                       
+                        <a href="nosotros.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Nosotros
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; gap: 0.8rem;">
+                        <a href="registro.html" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3B82F6; color: #F0F9FF; padding: 0.6rem 1.5rem; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.3s; backdrop-filter: blur(4px);">
+                            <i class="fas fa-envelope" style="margin-right: 5px;"></i> Contacto
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="gallery-container">
+        <!-- Header -->
+        <div class="gallery-header">
+            <div class="brand-icon">
+                <i class="fas fa-camera-retro"></i>
+            </div>
+            <h1>FOTOS DEL CENTRO</h1>
+            <div class="sub">ZENITH CAMPUS · INSTALACIONES TECNOLÓGICAS</div>
+            <div class="header-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">24</div>
+                <div class="stat-label">Aulas inteligentes</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">8</div>
+                <div class="stat-label">Laboratorios</div>
+            </div>
+            <div class="stat-item">
+                <div class="-stat-number">1.2K</div>
+                <div class="stat-label">m² tecnológicos</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">360°</div>
+                <div class="stat-label">Tour virtual</div>
+            </div>
+        </div>
+
+        <!-- Filtros -->
+        <div class="gallery-filters">
+            <span class="filter-btn active" onclick="filtrarGaleria('todas')">Todas</span>
+            <span class="filter-btn" onclick="filtrarGaleria('aulas')">Aulas</span>
+            <span class="filter-btn" onclick="filtrarGaleria('laboratorios')">Laboratorios</span>
+            <span class="filter-btn" onclick="filtrarGaleria('espacios')">Espacios comunes</span>
+            <span class="filter-btn" onclick="filtrarGaleria('exterior')">Exterior</span>
+            <span class="filter-btn" onclick="filtrarGaleria('eventos')">Eventos</span>
+        </div>
+
+        <!-- Galería -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- Las fotos se generarán aquí -->
+        </div>
+
+        <!-- Sección Tour Virtual -->
+        <div class="vr-section">
+            <div class="vr-icon">
+                <i class="fas fa-vr-cardboard"></i>
+            </div>
+            <div class="vr-content">
+                <h2>Tour virtual 360°</h2>
+                <p>Explora nuestras instalaciones desde cualquier lugar con nuestro recorrido interactivo. Vive la experiencia del campus tecnológico Zenith sin moverte de casa.</p>
+                <button class="vr-btn" onclick="alert('🎮 Iniciando tour virtual 360° · Preparando experiencia inmersiva')">
+                    <i class="fas fa-play"></i> Iniciar recorrido
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <span>⏄</span>  INNOVACIÓN CONFIABLE · INSTALACIONES DE VANGUARDIA  <span>⏄</span>
+        </div>
+    </div>
+
+    <!-- Modal para imagen grande -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="modal-close" onclick="cerrarModal()"><i class="fas fa-times"></i></span>
+            <div class="modal-image" id="modalImage">
+                <i class="fas fa-building"></i>
+            </div>
+            <div class="modal-info" id="modalInfo">
+                <h2>Centro Tecnológico Zenith</h2>
+                <p>Instalaciones de última generación</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div style="position: fixed; bottom: 5%; left: 2%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+    <div style="position: fixed; top: 10%; right: 3%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(50px);"></div>
+
+    <script>
+        // Base de datos de fotos
+        const fotos = [
+            { id: 1, titulo: 'Aula inteligente 4.0', ubicacion: 'Edificio principal · Piso 2', categoria: 'aulas', icono: 'chalkboard-teacher', destacado: true },
+            { id: 2, titulo: 'Laboratorio de IA', ubicacion: 'Edificio innovación', categoria: 'laboratorios', icono: 'microchip' },
+            { id: 3, titulo: 'Zona de coworking', ubicacion: 'Espacio abierto', categoria: 'espacios', icono: 'users' },
+            { id: 4, titulo: 'Fachada principal', ubicacion: 'Acceso norte', categoria: 'exterior', icono: 'building' },
+            { id: 5, titulo: 'Hackathon 2025', ubicacion: 'Auditorio', categoria: 'eventos', icono: 'calendar-alt', destacado: true },
+            { id: 6, titulo: 'Laboratorio de robótica', ubicacion: 'Sótano técnico', categoria: 'laboratorios', icono: 'robot' },
+            { id: 7, titulo: 'Biblioteca digital', ubicacion: 'Edificio central', categoria: 'espacios', icono: 'book-open' },
+            { id: 8, titulo: 'Aula de ciberseguridad', ubicacion: 'Edificio principal', categoria: 'aulas', icono: 'shield-alt' },
+            { id: 9, titulo: 'Zona gaming', ubicacion: 'Área recreativa', categoria: 'espacios', icono: 'gamepad' },
+            { id: 10, titulo: 'Exterior - Jardines', ubicacion: 'Zona este', categoria: 'exterior', icono: 'tree' },
+            { id: 11, titulo: 'Conferencia magistral', ubicacion: 'Auditorio principal', categoria: 'eventos', icono: 'microphone' },
+            { id: 12, titulo: 'Realidad virtual lab', ubicacion: 'Laboratorio VR', categoria: 'laboratorios', icono: 'vr-cardboard', destacado: true }
+        ];
+
+        // Función para mostrar las fotos
+        function mostrarFotos(categoria = 'todas') {
+            const grid = document.getElementById('galleryGrid');
+            grid.innerHTML = '';
+
+            const filtradas = categoria === 'todas' 
+                ? fotos 
+                : fotos.filter(foto => foto.categoria === categoria);
+
+            filtradas.forEach(foto => {
+                const card = document.createElement('div');
+                card.className = 'photo-card';
+                card.onclick = () => abrirModal(foto);
+                
+                card.innerHTML = `
+                    <div class="photo-image">
+                        <i class="fas fa-${foto.icono}"></i>
+                        ${foto.destacado ? '<span class="photo-badge">Destacado</span>' : ''}
+                        <div class="photo-overlay">
+                            <span class="overlay-btn" onclick="event.stopPropagation(); abrirModal(${JSON.stringify(foto).replace(/"/g, '&quot;')})">
+                                <i class="fas fa-search-plus"></i> Ver
+                            </span>
+                        </div>
+                    </div>
+                    <div class="photo-info">
+                        <h3 class="photo-title">${foto.titulo}</h3>
+                        <div class="photo-location">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>${foto.ubicacion}</span>
+                        </div>
+                        <div class="photo-meta">
+                            <span><i class="far fa-calendar"></i> 2025</span>
+                            <span><i class="fas fa-camera"></i> 4K</span>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Función para filtrar
+        function filtrarGaleria(categoria) {
+            const botones = document.querySelectorAll('.filter-btn');
+            botones.forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase().includes(categoria) || 
+                   (categoria === 'todas' && btn.textContent === 'Todas')) {
+                    btn.classList.add('active');
+                }
+            });
+            mostrarFotos(categoria);
+        }
+
+        // Modal functions
+        function abrirModal(foto) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            const modalInfo = document.getElementById('modalInfo');
+            
+            modalImage.innerHTML = `<i class="fas fa-${foto.icono}"></i>`;
+            modalInfo.innerHTML = `
+                <h2>${foto.titulo}</h2>
+                <p><i class="fas fa-map-marker-alt" style="color: #3B82F6; margin-right: 5px;"></i>${foto.ubicacion}</p>
+                <p style="margin-top: 10px; color: #B0C7E9;">Categoría: ${foto.categoria} · Fotografía 4K</p>
+            `;
+            
+            modal.classList.add('active');
+        }
+
+        function cerrarModal() {
+            document.getElementById('imageModal').classList.remove('active');
+        }
+
+        // Cerrar modal con ESC
+        document.addEventListener('keydown', function(e) {
+            if(e.key === 'Escape') {
+                cerrarModal();
+            }
+        });
+
+        // Cargar fotos al inicio
+        mostrarFotos('todas');
+    </script>
+</body>
+</html>

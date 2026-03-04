@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cursos Tecnológicos · Cenit Tecnológico</title>
+    <!-- Fuentes: Montserrat (bold) y Poppins (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 para los modales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="styless_cursos.css">
+   <nav class="navbar">
+        <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                <!-- Logo -->
+                <a href="#" style="display: flex; align-items: center; gap: 0.8rem; text-decoration: none;">
+                    <div style="width: 45px; height: 45px; background: rgba(59, 130, 246, 0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); border: 1px solid rgba(59, 130, 246, 0.25);">
+                        <i class="fas fa-book-open" style="font-size: 1.5rem; color: #3B82F6; filter: drop-shadow(0 0 10px #3B82F6);"></i>
+                    </div>
+                    <div>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%); -webkit-background-clip: text; background-clip: text; color: transparent;">Cenit</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1.2rem; color: #A0B3D9;"> Tecnológico</span>
+                    </div>
+                </a>
+
+                <button id="menuToggle" style="display: none; background: rgba(240, 249, 255, 0.03); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; width: 45px; height: 45px; color: #F0F9FF; cursor: pointer; backdrop-filter: blur(4px);" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div id="navMenu" style="display: flex; align-items: center; gap: 2rem;">
+                    <div style="display: flex; gap: 1.8rem;">
+                        <a href="inicio.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Inicio
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="cursos.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Cursos
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="fotos_centro.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Galeria
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="nosotros.html" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Nosotros
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; gap: 0.8rem;">
+                        <a href="contacto.html" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3B82F6; color: #F0F9FF; padding: 0.6rem 1.5rem; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.3s; backdrop-filter: blur(4px);">
+                            <i class="fas fa-envelope" style="margin-right: 5px;"></i> Contacto
+                        </a>
+                    </div>
+
+                    <!-- ===== BARRA DE NOTIFICACIONES (igual que panel admin) ===== -->
+        <div class="notifications-bar">
+            <div class="user-profile-mini">
+                <span>Visitante</span>
+                <img src="https://ui-avatars.com/api/?name=Visitante&background=3B82F6&color=fff&size=50" alt="Usuario">
+            </div>
+
+                </div>
+            </div>
+        </div>
+    </nav>
+</head>
+<body>
+    
+
+    <div class="courses-container">
+        <!-- Header -->
+        <div class="brand-header">
+            <div class="brand-icon">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>CENIT TECNOLOGICO</h1>
+            <div class="sub">cursos tecnológicos · innovación asegurada</div>
+            <div class="header-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <!-- Filtros de categorías -->
+        <div class="filters-section">
+            <span class="filter-chip active">Todos</span>
+            <span class="filter-chip" onclick="filtrarCategoria('Inteligencia Artificial')">Inteligencia Artificial</span>
+            <span class="filter-chip" onclick="filtrarCategoria('Ciberseguridad')">Ciberseguridad</span>
+            <span class="filter-chip" onclick="filtrarCategoria('Desarrollo')">Desarrollo</span>
+            <span class="filter-chip" onclick="filtrarCategoria('Cloud')">Cloud & DevOps</span>
+            <span class="filter-chip" onclick="filtrarCategoria('Datos')">Ciencia de Datos</span>
+        </div>
+
+        <!-- Grid de cursos -->
+        <div class="courses-grid">
+            <!-- Curso 1 - IA -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-robot"></i>
+                    <span class="card-badge">Nuevo</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">IA Avanzada</h3>
+                    <p class="card-description">Domina machine learning, redes neuronales y modelos generativos con proyectos reales.</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 40 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Avanzado</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$120 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('IA Avanzada')">Inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 2 - Ciberseguridad -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Ciberseguridad Total</h3>
+                    <p class="card-description">Aprende ethical hacking, análisis de vulnerabilidades y protección de infraestructuras críticas.</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 60 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Intermedio</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$200 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('Ciberseguridad Total')">Inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 3 - Desarrollo Full Stack -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-code"></i>
+                    <span class="card-badge">Popular</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Full Stack Pro</h3>
+                    <p class="card-description">React, Node.js, bases de datos y despliegue en la nube. Conviértete en desarrollador completo.</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 80 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Principiante</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">300 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('Full Stack Pro')">Inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 4 - Cloud Computing -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-cloud"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Cloud Architect</h3>
+                    <p class="card-description">AWS, Azure y Google Cloud. Diseña arquitecturas escalables y seguras.</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 50 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Intermedio</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$150 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('Cloud Architect')">Inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 5 - Big Data -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-chart-bar"></i>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Big Data & Analytics</h3>
+                    <p class="card-description">Hadoop, Spark, y visualización de datos para tomar decisiones estratégicas.</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 55 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Intermedio</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$400 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('Big Data & Analytics')">Inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curso 6 - Blockchain -->
+            <div class="course-card">
+                <div class="card-image">
+                    <i class="fas fa-link"></i>
+                    <span class="card-badge">Próximamente</span>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">Blockchain Developer</h3>
+                    <p class="card-description">Smart contracts, Ethereum y desarrollo de aplicaciones descentralizadas (dApps).</p>
+                    <div class="card-meta">
+                        <span class="meta-item"><i class="far fa-clock"></i> 45 horas</span>
+                        <span class="meta-item"><i class="fas fa-signal"></i> Avanzado</span>
+                        <span class="meta-item"><i class="fas fa-certificate"></i> Certificación</span>
+                    </div>
+                    <div class="card-footer">
+                        <span class="price">$320 <small>USD</small></span>
+                        <button class="btn-card" onclick="inscribirCurso('Blockchain Developer')">Pre-inscribirme <i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Características destacadas -->
+        <div class="features-section">
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+                <h3>100% Online</h3>
+                <p>Accede desde cualquier lugar, a tu ritmo, con soporte personalizado.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-certificate"></i></div>
+                <h3>Certificación Oficial</h3>
+                <p>Certificados avalados por empresas tecnológicas líderes.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-users"></i></div>
+                <h3>Mentores Expertos</h3>
+                <p>Acompañamiento de profesionales activos en la industria.</p>
+            </div>
+            <div class="feature-item">
+                <div class="feature-icon"><i class="fas fa-infinity"></i></div>
+                <h3>Acceso Vitalicio</h3>
+                <p>Actualizaciones gratuitas y contenido nuevo permanentemente.</p>
+            </div>
+        </div>
+
+        <!-- CTA final -->
+        <div class="cta-section">
+            <h2>¿Listo para impulsar tu carrera?</h2>
+            <p>Únete a más de 10,000 profesionales que ya confían en Cenit Digital.</p>
+            <button class="btn-cta" onclick="explorarCursos()">
+                <i class="fas fa-graduation-cap" style="margin-right: 10px;"></i>
+                Explorar todos los cursos
+            </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-note">
+            <span>⏄</span>  INNOVACIÓN CONFIABLE · TECNOLOGÍA PARA EL FUTURO  <span>⏄</span>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div style="position: fixed; bottom: 5%; left: 2%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+    <div style="position: fixed; top: 10%; right: 3%; width: 250px; height: 250px; background: radial-gradient(circle, rgba(59,130,246,0.04) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(50px);"></div>
+
+</body>
+<script src="apcurso.js"></script>
+</html>

@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Docente - Cénit Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styless_docente.css">
+</head>
+<body>
+    <!-- SIDEBAR - Diseño consistente con la paleta -->
+    <nav class="sidebar">
+        <div class="logo-container">
+            <i class="fas fa-microchip"></i>
+            <h1 class="logo-name">Cénit Digital</h1>
+        </div>
+       
+        <ul class="menu-links">
+            <li><a href="#" onclick="mostrarSeccion('inicio')"><i class="fas fa-home"></i> Inicio</a></li>
+            <li><a href="#" onclick="mostrarSeccion('materias')"><i class="fas fa-book"></i> Mis Materias</a></li>
+            <li><a href="#" onclick="mostrarSeccion('estudiantes')"><i class="fas fa-user-graduate"></i> Estudiantes</a></li>
+            <li><a href="#" onclick="mostrarSeccion('calificaciones')"><i class="fas fa-clipboard-check"></i> Calificaciones</a></li>
+            <li><a href="#" onclick="mostrarSeccion('reportes')"><i class="fas fa-chart-line"></i> Reportes</a></li>
+            <li><a href="#" onclick="mostrarSeccion('configuracion')"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+        
+        <button class="btn-top" onclick="alert('Cerrando sesión...')">
+            <i class="fas fa-sign-out-alt"></i> Salir
+        </button>
+    </nav>
+
+    <main class="content">
+        <!-- TOP HEADER -->
+        <header class="top-header">
+            <div class="welcome-text">
+                <h1>Panel de Control Docente</h1>
+                <p>Gestión Académica - Cénit Digital</p>
+            </div>
+
+            <div class="user-meta">
+                <div class="notifications">
+                    <i class="fas fa-bell" title="Nuevas entregas"></i>
+                    <i class="fas fa-envelope" title="Mensajes de estudiantes"></i>
+                </div>
+                <div class="user-profile">
+                    <span>Nestor Aguilar</span>
+                    <img src="https://ui-avatars.com/api/?name=nestor+aguilar&background=3B82F6&color=fff&size=50" alt="Foto Profesor">
+                </div>
+            </div>
+        </header>
+
+        <div class="views-container">
+            <!-- INICIO - Dashboard -->
+            <section id="inicio" class="view-section">
+                <h2>Panel Principal</h2>
+                <p>Resumen académico y métricas generales.</p>
+
+                <div class="dashboard-grid" style="grid-template-columns: repeat(2, 1fr);">
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-value">8.7</span>
+                            <span class="stat-label">Promedio General</span>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-value">92%</span>
+                            <span class="stat-label">Asistencia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card progress-section">
+                    <h3>Promedio de calificaciones</h3>
+                    <div class="course-bar">
+                        <label>Aprobados (80%)</label>
+                        <progress value="80" max="100"></progress>
+                    </div>
+                    <div class="course-bar">
+                        <label>Reprobados (20%)</label>
+                        <progress value="20" max="100"></progress>
+                    </div>
+                </div>
+
+                <div class="card announcements-section">
+                    <h3>Avisos Recientes</h3>
+                    <div class="announcement-box">
+                        <i class="fas fa-info-circle" style="color: #3B82F6; margin-right: 0.5rem;"></i>
+                        Mantenimiento de servidores: Sábado 7 de marzo en Cénit Digital.
+                    </div>
+                </div>
+            </section>
+
+            <!-- MIS MATERIAS -->
+            <section id="materias" class="view-section" style="display:none;">
+                <h2>Mis Materias</h2>
+
+                <div class="teacher-header">
+                    <div class="header-info">
+                        <p>Panel de control para la administración de clases y evaluaciones.</p>
+                    </div>
+                    <button class="btn-add-class"><i class="fas fa-plus"></i> Nueva Materia</button>
+                </div>
+
+                <div class="notion-tabs">
+                    <span class="tab active"><i class="fas fa-chalkboard"></i> Clases Activas</span>
+                    <span class="tab"><i class="fas fa-archive"></i> Histórico</span>
+                    <span class="tab"><i class="fas fa-calendar-alt"></i> Horarios de Tutoría</span>
+                </div>
+
+                <div class="asignaturas-grid">
+                    <div class="notion-card">
+                        <div class="card-visual">
+                            <i class="fas fa-code"></i>
+                            <span class="student-count"><i class="fas fa-users"></i> 24 Alumnos</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Programación Web II</div>
+                            <div class="card-sub">Grupo: A-2026</div>
+                            <div class="card-actions">
+                                <button class="btn-manage">Gestionar</button>
+                                <button class="btn-icon-only" title="Calificaciones"><i class="fas fa-chart-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notion-card">
+                        <div class="card-visual">
+                            <i class="fas fa-database"></i>
+                            <span class="student-count"><i class="fas fa-users"></i> 18 Alumnos</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Sistemas de BD</div>
+                            <div class="card-sub">Grupo: B-2026</div>
+                            <div class="card-actions">
+                                <button class="btn-manage">Gestionar</button>
+                                <button class="btn-icon-only" title="Calificaciones"><i class="fas fa-chart-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="notion-card">
+                        <div class="card-visual">
+                            <i class="fas fa-project-diagram"></i>
+                            <span class="student-count"><i class="fas fa-users"></i> 30 Alumnos</span>
+                        </div>
+                        <div class="card-content">
+                            <div class="card-label">Arquitectura de Software</div>
+                            <div class="card-sub">Grupo: C-2026</div>
+                            <div class="card-actions">
+                                <button class="btn-manage">Gestionar</button>
+                                <button class="btn-icon-only" title="Calificaciones"><i class="fas fa-chart-line"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ESTUDIANTES -->
+            <section id="estudiantes" class="view-section" style="display:none;">
+                <h2>Gestión de Estudiantes</h2>
+                <p>Lista de estudiantes inscritos en tus materias.</p>
+
+                <div class="card">
+                    <div class="section-header">
+                        <h3><i class="fas fa-users"></i> Todos los Estudiantes</h3>
+                    </div>
+
+                    <div class="table-controls">
+                        <div>
+                            Mostrar
+                            <select>
+                                <option>10</option>
+                                <option>25</option>
+                                <option>50</option>
+                            </select>
+                            Entradas
+                        </div>
+
+                        <div>
+                            Buscar:
+                            <input type="text" placeholder="Buscar estudiante...">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="student-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Nombre</th>
+                                    <th>Matrícula</th>
+                                    <th>Correo</th>
+                                    <th>Contacto</th>
+                                    <th>Foto</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Sofía Tamayo</td>
+                                    <td>234113</td>
+                                    <td>sofia.t@cenit.ni</td>
+                                    <td>3147894512</td>
+                                    <td><img src="https://ui-avatars.com/api/?name=Sofia+Tamayo&background=3B82F6&color=fff&size=40" class="avatar"></td>
+                                    <td>
+                                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Natalia Cardona</td>
+                                    <td>234112</td>
+                                    <td>natalia.c@cenit.ni</td>
+                                    <td>3015824671</td>
+                                    <td><img src="https://ui-avatars.com/api/?name=Natalia+Cardona&background=3B82F6&color=fff&size=40" class="avatar"></td>
+                                    <td>
+                                        <button class="btn-edit"><i class="fas fa-pen"></i></button>
+                                        <button class="btn-delete"><i class="fas fa-trash"></i></button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="pagination">
+                        <button>Anterior</button>
+                        <button class="active-page">1</button>
+                        <button>2</button>
+                        <button>3</button>
+                        <button>Siguiente</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CALIFICACIONES -->
+            <section id="calificaciones" class="view-section" style="display:none;">
+                <h2>Lista de calificaciones</h2>
+                <p>Administrar notas y evaluaciones.</p>
+
+                <div class="card">
+                    <div class="section-header">
+                        <h3><i class="fas fa-clipboard-check"></i> Registro de Calificaciones</h3>
+                    </div>
+
+                    <div class="table-controls">
+                        <div>
+                            Materia:
+                            <select>
+                                <option>Programación Web II</option>
+                                <option>Sistemas de BD</option>
+                                <option>Arquitectura de Software</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            Buscar:
+                            <input type="text" placeholder="Buscar estudiante...">
+                        </div>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="grades-table">
+                            <thead>
+                                <tr>
+                                    <th>#</th>
+                                    <th>Estudiante</th>
+                                    <th>Parcial 1</th>
+                                    <th>Parcial 2</th>
+                                    <th>Proyecto</th>
+                                    <th>Promedio</th>
+                                    <th>Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>1</td>
+                                    <td>Sofía Tamayo</td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="85"></td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="90"></td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="88"></td>
+                                    <td>87.7</td>
+                                    <td><span class="estado aprobado">Aprobado</span></td>
+                                </tr>
+                                <tr>
+                                    <td>2</td>
+                                    <td>Natalia Cardona</td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="65"></td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="70"></td>
+                                    <td><input type="number" class="form-control" min="0" max="100" placeholder="0-100" value="68"></td>
+                                    <td>67.7</td>
+                                    <td><span class="estado reprobado">Reprobado</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="actions">
+                        <button class="btn-primary"><i class="fas fa-save"></i> Guardar Cambios</button>
+                        <button class="btn-secondary"><i class="fas fa-download"></i> Exportar</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- REPORTES -->
+            <section id="reportes" class="view-section" style="display:none;">
+                <h2>Reportes Académicos</h2>
+                <p>Estadísticas y rendimiento.</p>
+
+                <div class="teacher-header">
+                    <button class="btn-download" onclick="window.print()"><i class="fas fa-file-export"></i> Exportar PDF</button>
+                </div>
+
+                <div class="dashboard-grid">
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-value">8.7</span>
+                            <span class="stat-label">Promedio General</span>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-user-check"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-value">92%</span>
+                            <span class="stat-label">Asistencia</span>
+                        </div>
+                    </div>
+                    <div class="card stat-card">
+                        <div class="stat-icon">
+                            <i class="fas fa-clipboard-list"></i>
+                        </div>
+                        <div class="stat-data">
+                            <span class="stat-value">15</span>
+                            <span class="stat-label">Tareas por Calificar</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="report-content-grid">
+                    <div class="card">
+                        <h3>Rendimiento por Asignatura</h3>
+                        <div class="report-row">
+                            <span>Programación Web II</span>
+                            <div class="progress-bg"><div class="progress-fill" style="width: 85%;"></div></div>
+                            <span class="report-pct">8.5</span>
+                        </div>
+                        <div class="report-row">
+                            <span>Sistemas de BD</span>
+                            <div class="progress-bg"><div class="progress-fill" style="width: 72%;"></div></div>
+                            <span class="report-pct">7.2</span>
+                        </div>
+                        <div class="report-row">
+                            <span>Arquitectura de Software</span>
+                            <div class="progress-bg"><div class="progress-fill" style="width: 90%;"></div></div>
+                            <span class="report-pct">9.0</span>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Bandeja de Alerta Temprana</h3>
+                        <p style="color: #9BB5D9; font-size: 0.85rem; margin-bottom: 1rem;">Alumnos con promedio menor a 6.0 o baja asistencia.</p>
+                        <div class="report-alert-item" style="font-weight: 600; color: #F0F9FF;">
+                            <span>Alumno</span>
+                            <span>Materia</span>
+                            <span>Riesgo</span>
+                        </div>
+                        <div class="report-alert-item">
+                            <span>Carlos Méndez</span>
+                            <span>BD SQL</span>
+                            <span class="status-pill" style="background: rgba(239, 68, 68, 0.2); color: #f87171; border: 1px solid #f87171;">Crítico</span>
+                        </div>
+                        <div class="report-alert-item">
+                            <span>Ana Estrada</span>
+                            <span>Prog. Web</span>
+                            <span class="status-pill" style="background: rgba(234, 179, 8, 0.2); color: #facc15; border: 1px solid #facc15;">Alerta</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CONFIGURACIÓN -->
+            <section id="configuracion" class="view-section" style="display:none;">
+                <h2>Configuración</h2>
+                <p>Ajustes del perfil docente.</p>
+
+                <div class="coming-soon-container">
+                    <div class="coming-soon-card">
+                        <div class="icon-pulse">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <h2 style="color: #F0F9FF;">Panel de Configuración</h2>
+                        <div class="badge-status">PRÓXIMAMENTE</div>
+                        <p style="color: #9BB5D9; margin: 1rem 0;">
+                            Estamos trabajando para ofrecerte opciones avanzadas de personalización.
+                        </p>
+                        <div class="features-preview">
+                            <span class="f-item"><i class="fas fa-moon"></i> Modo Oscuro</span>
+                            <span class="f-item"><i class="fas fa-bell"></i> Alertas</span>
+                            <span class="f-item"><i class="fas fa-language"></i> Multi-idioma</span>
+                        </div>
+                        <div class="progress-container">
+                            <div style="color: #F0F9FF; margin-bottom: 0.5rem;">Desarrollo: 75%</div>
+                            <div class="bar-work"><div class="fill-work"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function mostrarSeccion(id) {
+            // Oculta todas las secciones
+            const secciones = document.querySelectorAll('.view-section');
+            secciones.forEach(sec => sec.style.display = 'none');
+
+            // Muestra la seleccionada
+            document.getElementById(id).style.display = 'block';
+        }
+
+        // Inicializar mostrando la sección de inicio
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarSeccion('inicio');
+        });
+    </script>
+</body>
+</html>

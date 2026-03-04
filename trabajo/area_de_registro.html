@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro · Zenith Account</title>
+    <!-- Fuentes -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styless_registro.css">
+    
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 1.5rem;">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+                <!-- Logo -->
+                <a href="#" style="display: flex; align-items: center; gap: 0.8rem; text-decoration: none;">
+                    <div style="width: 45px; height: 45px; background: rgba(59, 130, 246, 0.08); border-radius: 14px; display: flex; align-items: center; justify-content: center; backdrop-filter: blur(4px); border: 1px solid rgba(59, 130, 246, 0.25);">
+                        <i class="fas fa-book-open" style="font-size: 1.5rem; color: #3B82F6; filter: drop-shadow(0 0 10px #3B82F6);"></i>
+                    </div>
+                    <div>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.5rem; background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%); -webkit-background-clip: text; background-clip: text; color: transparent;">ZENITH</span>
+                        <span style="font-family: 'Montserrat', sans-serif; font-weight: 400; font-size: 1.2rem; color: #A0B3D9;"> ACADEMY</span>
+                    </div>
+                </a>
+
+                <button id="menuToggle" style="display: none; background: rgba(240, 249, 255, 0.03); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 12px; width: 45px; height: 45px; color: #F0F9FF; cursor: pointer; backdrop-filter: blur(4px);" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <div id="navMenu" style="display: flex; align-items: center; gap: 2rem;">
+                    <div style="display: flex; gap: 1.8rem;">
+                        <a href="#inicio" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Inicio
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="#cursos" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Cursos
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="#asignaturas" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Asignaturas
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                        <a href="#nosotros" style="font-family: 'Poppins', sans-serif; font-weight: 500; color: #F0F9FF; text-decoration: none; font-size: 0.95rem; padding: 0.5rem 0; position: relative;">
+                            Nosotros
+                            <span style="content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #3B82F6; transition: width 0.3s; box-shadow: 0 0 10px #3B82F6;"></span>
+                        </a>
+                    </div>
+
+                    <div style="display: flex; gap: 0.8rem;">
+                        <a href="#contacto" style="background: rgba(59, 130, 246, 0.1); border: 1px solid #3B82F6; color: #F0F9FF; padding: 0.6rem 1.5rem; border-radius: 30px; font-family: 'Montserrat', sans-serif; font-weight: 600; font-size: 0.9rem; text-decoration: none; transition: all 0.3s; backdrop-filter: blur(4px);">
+                            <i class="fas fa-envelope" style="margin-right: 5px;"></i> Contacto
+                        </a>
+                       
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- FORMULARIO -->
+    <div class="register-container">
+        <!-- Header del formulario (igual que antes) -->
+        <div class="register-header">
+            <div class="brand-icon">
+                <i class="fas fa-user-plus"></i>
+            </div>
+            <h1>CREAR CUENTA</h1>
+            <div class="sub">ZENITH · ACCESO SEGURO</div>
+            <div class="header-dots">
+                <span></span><span></span><span></span><span></span><span></span>
+            </div>
+        </div>
+
+        <div class="progress-steps">
+            <div class="step active">
+                <div class="step-circle">1</div>
+                <span>Datos</span>
+            </div>
+            <div class="step">
+                <div class="step-circle">2</div>
+                <span>Verificación</span>
+            </div>
+            <div class="step">
+                <div class="step-circle">3</div>
+                <span>Bienvenida</span>
+            </div>
+        </div>
+
+        <form class="register-form" onsubmit="event.preventDefault(); alert('✅ Registro exitoso');">
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nombre</label>
+                    <input type="text" class="form-control" placeholder="Tu nombre" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Apellido</label>
+                    <input type="text" class="form-control" placeholder="Tu apellido" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-envelope"></i> Correo electrónico</label>
+                <input type="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+            </div>
+
+            <div class="form-group">
+                <label><i class="fas fa-phone-alt"></i> Teléfono (opcional)</label>
+                <input type="tel" class="form-control" placeholder="+56 9 1234 5678">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Contraseña</label>
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                    <div class="password-strength">
+                        <span class="strength-bar filled"></span>
+                        <span class="strength-bar filled"></span>
+                        <span class="strength-bar filled"></span>
+                        <span class="strength-bar"></span>
+                        <span class="strength-bar"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Confirmar</label>
+                    <input type="password" class="form-control" placeholder="••••••••" required>
+                </div>
+            </div>
+
+            <div class="terms-check">
+                <input type="checkbox" id="terminos" checked required>
+                <label for="terminos">Acepto los <a href="#" onclick="alert('Términos y condiciones')">términos</a> y <a href="#" onclick="alert('Política de privacidad')">política</a></label>
+            </div>
+
+            <div class="focus-dots">
+                <span></span><span></span><span></span>
+            </div>
+
+            <button type="submit" class="register-btn">
+                <i class="fas fa-check-circle"></i> Registrarme ahora
+            </button>
+
+            <div class="divider">
+                <span class="divider-line"></span>
+                <span class="divider-text">o regístrate con</span>
+                <span class="divider-line"></span>
+            </div>
+
+            <div class="social-register">
+                <button type="button" class="social-btn" onclick="alert('Registro con Gmail')">
+                    <i class="fab fa-google"></i> Gmail
+                </button>
+                <button type="button" class="social-btn" onclick="alert('Registro con Apple')">
+                    <i class="fab fa-apple"></i> Apple
+                </button>
+            </div>
+
+            <div class="login-link">
+                ¿Ya tienes cuenta? <a href="#" onclick="alert('Redirigiendo a inicio de sesión')">Inicia sesión</a>
+            </div>
+        </form>
+
+        <div style="text-align: center; margin-top: 1.5rem; font-size: 0.7rem; color: #5F7A9F;">
+            <span>⏄</span> REGISTRO SEGURO <span>⏄</span>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos -->
+    <div style="position: fixed; bottom: 10%; left: 5%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(30px);"></div>
+    <div style="position: fixed; top: 10%; right: 8%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('show');
+        }
+        document.querySelectorAll('#navMenu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('navMenu').classList.remove('show');
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel Administrador - Cénit Digital</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- SweetAlert2 para alertas profesionales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <link rel="stylesheet" href="styless_admin.css">
+</head>
+<body>
+    <!-- SIDEBAR -->
+    <nav class="sidebar">
+        <div class="logo-container">
+            <i class="fas fa-crown"></i>
+            <h1 class="logo-name">Cénit Digital</h1>
+        </div>
+        <div class="admin-badge">
+            <i class="fas fa-shield-alt"></i> ADMINISTRADOR
+        </div>
+
+        <!-- Toggle Modo Oscuro -->
+        <div class="theme-toggle">
+            <span>🌙</span>
+            <label class="switch">
+                <input type="checkbox" id="toggle-tema">
+                <span class="slider"></span>
+            </label>
+        </div>
+       
+        <ul class="menu-links">
+            <li><a href="#" id="link-dashboard" class="active" onclick="cambiarVista('dashboard')"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
+            <li><a href="#" id="link-usuarios" onclick="cambiarVista('usuarios')"><i class="fas fa-users-cog"></i> Gestión de Usuarios</a></li>
+            <li><a href="#" id="link-estudiantes" onclick="cambiarVista('estudiantes')"><i class="fas fa-user-graduate"></i> Estudiantes</a></li>
+            <li><a href="#" id="link-docentes" onclick="cambiarVista('docentes')"><i class="fas fa-chalkboard-teacher"></i> Docentes</a></li>
+            <li><a href="#" id="link-cursos" onclick="cambiarVista('cursos')"><i class="fas fa-book"></i> Cursos y Materias</a></li>
+            <li><a href="#" id="link-calificaciones" onclick="cambiarVista('calificaciones')"><i class="fas fa-clipboard-check"></i> Calificaciones</a></li>
+            <li><a href="#" id="link-asignaciones" onclick="cambiarVista('asignaciones')"><i class="fas fa-tasks"></i> Asignaciones</a></li>
+            <li><a href="#" id="link-reportes" onclick="cambiarVista('reportes')"><i class="fas fa-chart-line"></i> Reportes</a></li>
+            <li><a href="#" id="link-config" onclick="cambiarVista('config')"><i class="fas fa-cog"></i> Configuración</a></li>
+        </ul>
+        
+        <button class="btn-top" id="btn-cerrar-sesion">
+            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+        </button>
+    </nav>
+
+    <main class="content">
+        <!-- HEADER -->
+        <header class="top-header">
+            <div class="welcome-text">
+                <h1>Panel Administrador</h1>
+                <p>Control total del sistema académico</p>
+            </div>
+
+            <div class="user-meta">
+                <div class="notifications">
+                    <i class="fas fa-bell" title="Notificaciones"></i>
+                    <i class="fas fa-envelope" title="Mensajes"></i>
+                </div>
+                <div class="user-profile">
+                    <span>Admin Principal</span>
+                    <img src="https://ui-avatars.com/api/?name=Admin+Cenit&background=3B82F6&color=fff&size=50" alt="Admin">
+                </div>
+            </div>
+        </header>
+
+        <!-- ========================================== -->
+        <!-- VISTA DASHBOARD -->
+        <!-- ========================================== -->
+        <div id="vista-dashboard" class="vista activo">
+            <div class="section-header">
+                <h2><i class="fas fa-tachometer-alt"></i> Dashboard General</h2>
+             <button class="btn-reporte" onclick="generarPDF('Dashboard')">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-users"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value" id="stat-total">0</span>
+                        <span class="stat-label">Total Usuarios</span>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-graduate"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value" id="stat-estudiantes">0</span>
+                        <span class="stat-label">Estudiantes</span>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value" id="stat-docentes">0</span>
+                        <span class="stat-label">Docentes</span>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-book"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value" id="stat-cursos">0</span>
+                        <span class="stat-label">Cursos Activos</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Actividad Reciente</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Evento</th><th>Usuario</th><th>Fecha</th></tr>
+                        </thead>
+                        <tbody id="actividad-reciente">
+                            <tr><td>Inicio de sesión</td><td>Admin</td><td>Hoy 10:30</td></tr>
+                            <tr><td>Registro estudiante</td><td>Sofía Tamayo</td><td>Ayer 15:20</td></tr>
+                            <tr><td>Actualización notas</td><td>Juan Pérez</td><td>Ayer 11:45</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA GESTIÓN DE USUARIOS -->
+        <!-- ========================================== -->
+        <div id="vista-usuarios" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-users-cog"></i> Gestión de Usuarios</h2>
+               <button class="btn-reporte" onclick="generarPDF('gestion_usuarios')">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="buscador-usuarios" class="search-box" placeholder="🔍 Buscar usuario...">
+            </div>
+
+            <div class="card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Usuario</th><th>Nombre</th><th>Email</th><th>Rol</th><th>Estado</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody id="tabla-usuarios">
+                            <tr>
+                                <td>admin</td><td>Admin Principal</td><td>admin@cenit.ni</td><td>Administrador</td><td class="activo">Activo</td>
+                                <td><button class="btn-editar">✏️</button><button class="btn-eliminar">🗑️</button></td>
+                            </tr>
+                            <tr>
+                                <td>jperez</td><td>Juan Pérez</td><td>juan@cenit.ni</td><td>Docente</td><td class="activo">Activo</td>
+                                <td><button class="btn-editar">✏️</button><button class="btn-eliminar">🗑️</button></td>
+                            </tr>
+                            <tr>
+                                <td>stamayo</td><td>Sofía Tamayo</td><td>sofia@cenit.ni</td><td>Estudiante</td><td class="activo">Activo</td>
+                                <td><button class="btn-editar">✏️</button><button class="btn-eliminar">🗑️</button></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+       <!-- ========================================== -->
+<!-- VISTA ESTUDIANTES - CON FORMULARIO DE INSCRIPCIÓN MEJORADO -->
+<!-- ========================================== -->
+<div id="vista-estudiantes" class="vista">
+    <div class="section-header">
+        <h2><i class="fas fa-user-graduate"></i> Inscripción de Estudiantes</h2>
+       <button class="btn-reporte" onclick="generarPDF('estudiantes')">
+            <i class="fas fa-file-pdf"></i> Generar Reporte
+        </button>
+    </div>
+
+    <div class="search-container">
+        <input type="text" id="buscador-estudiantes" class="search-box" placeholder="🔍 Buscar estudiante por nombre, matrícula o carrera...">
+    </div>
+
+    <!-- FORMULARIO DE INSCRIPCIÓN MEJORADO -->
+    <div class="card" style="border-left: 4px solid #3B82F6;">
+        <h3><i class="fas fa-pen-alt" style="color: #3B82F6;"></i> Formulario de Inscripción</h3>
+        
+        <form id="formulario-inscripcion" class="profile-form" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem;">
+            <!-- Columna 1 -->
+            <div>
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Nombres Completos *</label>
+                    <input type="text" id="nombre" class="form-control" placeholder="Ej: Juan Carlos" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Apellidos Completos *</label>
+                    <input type="text" id="apellidos" class="form-control" placeholder="Ej: Pérez Gómez" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-id-card"></i> Número de cédula *</label>
+                    <input type="text" id="matricula" class="form-control" placeholder="Ej: 2024-001" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Correo Electrónico *</label>
+                    <input type="email" id="email" class="form-control" placeholder="ejemplo@cenit.ni" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Teléfono *</label>
+                    <input type="tel" id="telefono" class="form-control" placeholder="Ej: 8888-8888" required>
+                </div>
+            </div>
+
+            <!-- Columna 2 -->
+            <div>
+                <div class="form-group">
+                    <label><i class="fas fa-calendar-alt"></i> Fecha de Nacimiento *</label>
+                    <input type="date" id="fecha-nacimiento" class="form-control" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-venus-mars"></i> Género</label>
+                    <select id="genero" class="form-control">
+                        <option value="">Seleccionar...</option>
+                        <option value="Masculino">Masculino</option>
+                        <option value="Femenino">Femenino</option>
+                        <option value="Otro">Otro</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Dirección</label>
+                    <input type="text" id="direccion" class="form-control" placeholder="Dirección de residencia">
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-layer-group"></i> Carrera *</label>
+                    <select id="carrera" class="form-control" required>
+                        <option value="">Seleccionar carrera...</option>
+                        <option value="Ingeniería en Sistemas">Ingeniería en Sistemas</option>
+                        <option value="Ingeniería en Software">Ingeniería en Software</option>
+                        <option value="Ingeniería en Telecomunicaciones">Ingeniería en Telecomunicaciones</option>
+                        <option value="Ciberseguridad">Ciberseguridad</option>
+                        <option value="Ciencia de Datos">Ciencia de Datos</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-clock"></i> Semestre *</label>
+                    <select id="semestre" class="form-control" required>
+                        <option value="">Seleccionar semestre...</option>
+                        <option value="1">Primer Semestre</option>
+                        <option value="2">Segundo Semestre</option>
+                        <option value="3">Tercer Semestre</option>
+                        <option value="4">Cuarto Semestre</option>
+                        <option value="5">Quinto Semestre</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Botones a lo ancho -->
+            <div style="grid-column: span 2; display: flex; gap: 1rem; justify-content: flex-end;">
+                <button type="button" class="btn-secondary" onclick="limpiarFormulario()">
+                    <i class="fas fa-eraser"></i> Limpiar
+                </button>
+                <button type="submit" class="btn-guardar" style="width: auto; padding: 0.8rem 2.5rem;" id="btn-submit">
+                    <i class="fas fa-save"></i> <span id="btn-texto">Guardar Inscripción</span>
+                </button>
+            </div>
+        </form>
+    </div>
+
+    <!-- LISTA DE ESTUDIANTES INSCRITOS -->
+    <div class="card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3><i class="fas fa-list"></i> Lista de Estudiantes Inscritos</h3>
+            <span style="color: #9BB5D9; font-size: 0.9rem;" id="total-estudiantes">Total: 0 estudiantes</span>
+        </div>
+        
+        <div class="table-responsive">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Matrícula</th>
+                        <th>Nombre Completo</th>
+                        <th>Email</th>
+                        <th>Teléfono</th>
+                        <th>Carrera</th>
+                        <th>Semestre</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="lista-estudiantes">
+                    <!-- Se llena con JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Paginación simple -->
+        <div class="pagination" style="display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.5rem;">
+            <button class="btn-pagina" onclick="cambiarPagina('anterior')" id="btn-anterior"><i class="fas fa-chevron-left"></i> Anterior</button>
+            <span style="color: #9BB5D9; padding: 0.5rem;" id="pagina-actual">Página 1</span>
+            <button class="btn-pagina" onclick="cambiarPagina('siguiente')" id="btn-siguiente">Siguiente <i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</div>
+
+        <!-- ========================================== -->
+        <!-- VISTA DOCENTES -->
+        <!-- ========================================== -->
+        <div id="vista-docentes" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-chalkboard-teacher"></i> Gestión de Docentes</h2>
+                <button class="btn-reporte" onclick="generarPDF('docentes')">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="buscador-docentes" class="search-box" placeholder="🔍 Buscar docente...">
+            </div>
+
+            <div class="card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Nombre</th><th>Email</th><th>Especialidad</th><th>Cursos</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Juan Pérez</td><td>juan.perez@cenit.ni</td><td>Programación</td><td>3</td><td><button class="btn-editar">✏️</button><button class="btn-eliminar">🗑️</button></td></tr>
+                            <tr><td>María Gómez</td><td>maria.gomez@cenit.ni</td><td>Bases de Datos</td><td>2</td><td><button class="btn-editar">✏️</button><button class="btn-eliminar">🗑️</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA CURSOS Y MATERIAS -->
+        <!-- ========================================== -->
+        <div id="vista-cursos" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-book"></i> Cursos y Materias</h2>
+                <button class="btn-reporte" onclick="generarPDF('cursos')">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="cursos-grid">
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <div class="curso-icon"><i class="fas fa-code"></i></div>
+                        <div class="curso-info">
+                            <h4>Programación Web II</h4>
+                            <p>Código: PW-2026</p>
+                        </div>
+                    </div>
+                    <div class="curso-stats">
+                        <span><i class="fas fa-users"></i> 24 estudiantes</span>
+                        <span><i class="fas fa-clock"></i> 4 créditos</span>
+                    </div>
+                    <p style="color: #9BB5D9;">Docente: Juan Pérez</p>
+                </div>
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <div class="curso-icon"><i class="fas fa-database"></i></div>
+                        <div class="curso-info">
+                            <h4>Sistemas de BD</h4>
+                            <p>Código: BD-2026</p>
+                        </div>
+                    </div>
+                    <div class="curso-stats">
+                        <span><i class="fas fa-users"></i> 18 estudiantes</span>
+                        <span><i class="fas fa-clock"></i> 3 créditos</span>
+                    </div>
+                    <p style="color: #9BB5D9;">Docente: María Gómez</p>
+                </div>
+                <div class="curso-card">
+                    <div class="curso-header">
+                        <div class="curso-icon"><i class="fas fa-project-diagram"></i></div>
+                        <div class="curso-info">
+                            <h4>Arquitectura Software</h4>
+                            <p>Código: AS-2026</p>
+                        </div>
+                    </div>
+                    <div class="curso-stats">
+                        <span><i class="fas fa-users"></i> 30 estudiantes</span>
+                        <span><i class="fas fa-clock"></i> 4 créditos</span>
+                    </div>
+                    <p style="color: #9BB5D9;">Docente: Carlos Rodríguez</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA CALIFICACIONES -->
+        <!-- ========================================== -->
+        <div id="vista-calificaciones" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-clipboard-check"></i> Calificaciones</h2>
+                    <button class="btn-reporte" onclick="generarPDF('calificaciones')">      
+                  <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="buscador-calificaciones" class="search-box" placeholder="🔍 Buscar estudiante...">
+            </div>
+
+            <div class="card">
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr><th>Estudiante</th><th>Curso</th><th>Nota</th><th>Estado</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Sofía Tamayo</td><td>Programación Web</td><td>85</td><td class="aprobado">Aprobado</td><td><button class="btn-editar">✏️</button></td></tr>
+                            <tr><td>Natalia Cardona</td><td>Bases de Datos</td><td>65</td><td class="reprobado">Reprobado</td><td><button class="btn-editar">✏️</button></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA ASIGNACIONES -->
+        <!-- ========================================== -->
+        <div id="vista-asignaciones" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-tasks"></i> Asignaciones</h2>
+              <button class="btn-reporte" onclick="generarPDF('asignaciones')">
+                    <i class="fas fa-file-pdf"></i> Generar Reporte
+                </button>
+            </div>
+
+            <div class="card">
+                <h3>Asignar Estudiante a Curso</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-bottom: 1rem;">
+                    <select class="form-control"><option>Programación Web</option><option>Bases de Datos</option></select>
+                    <select class="form-control"><option>Sofía Tamayo</option><option>Natalia Cardona</option></select>
+                </div>
+                <button class="btn-primary">Asignar</button>
+            </div>
+
+            <div class="card">
+                <h3>Asignar Docente a Curso</h3>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                    <select class="form-control"><option>Programación Web</option><option>Bases de Datos</option></select>
+                    <select class="form-control"><option>Juan Pérez</option><option>María Gómez</option></select>
+                </div>
+                <button class="btn-primary" style="margin-top: 1rem;">Asignar</button>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA REPORTES -->
+        <!-- ========================================== -->
+        <div id="vista-reportes" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-chart-line"></i> Reportes Académicos</h2>
+                <button class="btn-reporte" onclick="generarPDF('estudiantes')">>
+                    <i class="fas fa-file-pdf"></i> Exportar Todo
+                </button>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-chart-pie"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value">85%</span>
+                        <span class="stat-label">Rendimiento</span>
+                    </div>
+                </div>
+                <div class="card stat-card">
+                    <div class="stat-icon"><i class="fas fa-user-check"></i></div>
+                    <div class="stat-data">
+                        <span class="stat-value">92%</span>
+                        <span class="stat-label">Asistencia</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Rendimiento por Curso</h3>
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; color: #9BB5D9;"><span>Programación Web</span><span>85%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:85%; height:8px; background:#3B82F6; border-radius:4px;"></div></div>
+                </div>
+                <div style="margin-bottom: 1rem;">
+                    <div style="display: flex; justify-content: space-between; color: #9BB5D9;"><span>Bases de Datos</span><span>72%</span></div>
+                    <div class="progress-bg"><div class="progress-fill" style="width:72%; height:8px; background:#3B82F6; border-radius:4px;"></div></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ========================================== -->
+        <!-- VISTA CONFIGURACIÓN -->
+        <!-- ========================================== -->
+        <div id="vista-config" class="vista">
+            <div class="section-header">
+                <h2><i class="fas fa-cog"></i> Configuración</h2>
+                <button class="btn-reporte" onclick="generarPDF('estudiantes')">
+                    <i class="fas fa-file-pdf"></i> Exportar Configuración
+                </button>
+            </div>
+
+            <div style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
+                <div class="card" style="text-align: center; max-width: 500px;">
+                    <div style="font-size: 4rem; color: #3B82F6; margin-bottom: 1rem; animation: pulse 2s infinite;">
+                        <i class="fas fa-tools"></i>
+                    </div>
+                    <h2 style="color: #F0F9FF;">Panel de Configuración</h2>
+                    <div style="background: #3B82F6; color: white; padding: 0.5rem 1.5rem; border-radius: 30px; display: inline-block; margin: 1rem 0;">PRÓXIMAMENTE</div>
+                    <p style="color: #9BB5D9;">Estamos trabajando en opciones avanzadas de configuración.</p>
+                    <div style="margin-top: 2rem;">
+                        <div style="color: #F0F9FF; margin-bottom: 0.5rem;">Desarrollo: 75%</div>
+                        <div class="progress-bg"><div class="progress-fill" style="width:75%; height:8px; background:#3B82F6; border-radius:4px;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<script src="app.js"></script>
+</body>
+</html>

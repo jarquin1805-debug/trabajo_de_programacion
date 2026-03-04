@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contáctanos · Zenith</title>
+    <!-- Fuentes: Montserrat (bold) y Poppins (cuerpo) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome para iconos -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- SweetAlert2 para modales -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="styless_contact.css">
+</head>
+<body>
+    <!-- NAVBAR REPARADO -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <!-- Logo -->
+                <a href="#" class="logo-link">
+                    <div class="logo-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div>
+                        <span class="logo-text">ZENITH</span>
+                        <span class="logo-sub">ACADEMY</span>
+                    </div>
+                </a>
+
+                <!-- Botón menú móvil -->
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Menú de navegación -->
+                <div class="nav-menu" id="navMenu">
+                    <div class="nav-links">
+                        <a href="inicio.html" class="nav-link">
+                            Inicio
+                            <span></span>
+                        </a>
+                        <a href="cursos.html" class="nav-link">
+                            Cursos
+                            <span></span>
+                        </a>
+                        <a href="asignaturas.html" class="nav-link">
+                            Asignaturas
+                            <span></span>
+                        </a>
+                        <a href="nosotros.html" class="nav-link">
+                            Nosotros
+                            <span></span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="contacto.html" class="btn-contacto">
+                            <i class="fas fa-envelope"></i> Contacto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <div class="contact-wrapper">
+        <div class="contact-card">
+            <!-- Header -->
+            <div class="contact-header">
+                <div class="brand-icon">
+                    <img src="cenit tecnologico/2.png" alt="Contacto" class="contact-image">
+                </div>
+                <h1>Envíanos tu mensaje</h1>
+                <div class="sub">conecta con el futuro · respuesta garantizada</div>
+                <div class="header-dots">
+                    <span></span><span></span><span></span><span></span><span></span>
+                </div>
+            </div>
+
+            <!-- Información rápida en chips -->
+            <div class="quick-info">
+                <div class="info-chip">
+                    <div class="chip-icon"><i class="fas fa-envelope"></i></div>
+                    <div class="chip-text">
+                        <h4>Email</h4>
+                        <p><a href="mailto:hola@zenith.tech" onclick="enviarEmail(event)">hola@zenith.tech</a></p>
+                    </div>
+                </div>
+                <div class="info-chip">
+                    <div class="chip-icon"><i class="fas fa-phone-alt"></i></div>
+                    <div class="chip-text">
+                        <h4>Teléfono</h4>
+                        <p><a href="tel:+15550009999" onclick="mostrarTelefono(event)">+(505) 7539-6621</a></p>
+                    </div>
+                </div>
+                <div class="info-chip">
+                    <div class="chip-icon"><i class="fas fa-clock"></i></div>
+                    <div class="chip-text">
+                        <h4>Respuesta</h4>
+                        <p>24/7 · máx 2h</p>
+                    </div>
+                </div>
+                <div class="info-chip">
+                    <div class="chip-icon"><i class="fas fa-shield-alt"></i></div>
+                    <div class="chip-text">
+                        <h4>Seguridad</h4>
+                        <p>Cifrado extremo a extremo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario -->
+            <div class="contact-form">
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" id="nombre" class="form-control" placeholder="Tu nombre" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="empresa">Empresa</label>
+                            <input type="text" id="empresa" class="form-control" placeholder="Opcional">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Correo electrónico</label>
+                        <input type="email" id="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="asunto">Asunto</label>
+                        <input type="text" id="asunto" class="form-control" placeholder="¿Sobre qué nos escribes?" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" class="form-control" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                    </div>
+
+                    <!-- Puntos de enfoque -->
+                    <div class="focus-dots">
+                        <span></span><span></span><span></span>
+                    </div>
+
+                    <!-- Botón de envío -->
+                    <div class="submit-area">
+                        <button type="button" class="submit-btn" onclick="enviarMensaje()">
+                            <span>Enviar mensaje</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-note">
+                <span>⏄</span>  INNOVACIÓN CONFIABLE · COMUNICACIÓN SEGURA  <span>⏄</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Elementos decorativos de fondo -->
+    <div style="position: fixed; bottom: 10%; left: 5%; width: 150px; height: 150px; background: radial-gradient(circle, rgba(59,130,246,0.06) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(30px);"></div>
+    <div style="position: fixed; top: 10%; right: 8%; width: 200px; height: 200px; background: radial-gradient(circle, rgba(59,130,246,0.05) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: -1; filter: blur(40px);"></div>
+
+
+
+    <script src="contacto.js"></script>
+</body>
+</html>

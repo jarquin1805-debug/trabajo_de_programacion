@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login · Cénit Digital</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="styless_login.css">
+</head>
+<body>
+    <!-- NAVBAR COMPLETO -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-content">
+                <!-- Logo -->
+                <a href="#" class="logo-link">
+                    <div class="logo-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div>
+                        <span class="logo-text">CENIT</span>
+                        <span class="logo-sub">Tecnológico</span>
+                    </div>
+                </a>
+
+                <!-- Botón menú móvil -->
+                <button class="menu-toggle" onclick="toggleMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+
+                <!-- Menú de navegación -->
+                <div class="nav-menu" id="navMenu">
+                    <div class="nav-links">
+                        <a href="inicio.html" class="nav-link">
+                            Inicio
+                            <span></span>
+                        </a>
+                        <a href="cursos.html" class="nav-link">
+                            Cursos
+                            <span></span>
+                        </a>
+                        <a href="asignaturas.html" class="nav-link">
+                            Asignaturas
+                            <span></span>
+                        </a>
+                        <a href="nosotros.html" class="nav-link">
+                            Nosotros
+                            <span></span>
+                        </a>
+                    </div>
+
+                    <div>
+                        <a href="contacto.html" class="btn-contacto">
+                            <i class="fas fa-envelope"></i> Contacto
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENIDO PRINCIPAL CENTRADO -->
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="brand">
+                <div class="brand-icon">
+                    <i class="fas fa-crown"></i>
+                </div>
+                <h1>CÉNIT DIGITAL</h1>
+                <div class="sub">acceso al sistema</div>
+            </div>
+
+            <!-- Selector de usuarios (oculto por defecto, puedes mostrarlo si quieres) -->
+            <div class="user-selector" style="display: none;">
+                <div class="user-option" onclick="seleccionarUsuario('admin')" id="user-admin">
+                    <div class="user-avatar"><i class="fas fa-crown"></i></div>
+                    <div class="user-info">
+                        <h4>Admin</h4>
+                        <p>Administrador</p>
+                    </div>
+                </div>
+                <div class="user-option" onclick="seleccionarUsuario('docente')" id="user-docente">
+                    <div class="user-avatar"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="user-info">
+                        <h4>Docente</h4>
+                        <p>Profesor</p>
+                    </div>
+                </div>
+                <div class="user-option" onclick="seleccionarUsuario('estudiante')" id="user-estudiante">
+                    <div class="user-avatar"><i class="fas fa-user-graduate"></i></div>
+                    <div class="user-info">
+                        <h4>Estudiante</h4>
+                        <p>Alumno</p>
+                    </div>
+                </div>
+            </div>
+
+            <form id="loginForm" onsubmit="return validarLogin(event)">
+                <div class="input-group">
+                    <label><i class="fas fa-user"></i> Usuario</label>
+                    <input type="text" id="username" class="input-field" placeholder="usuario" required>
+                </div>
+                <div class="input-group">
+                    <label><i class="fas fa-lock"></i> Contraseña</label>
+                    <input type="password" id="password" class="input-field" placeholder="contraseña" required>
+                </div>
+
+                <div class="focus-dots">
+                    <span></span><span></span><span></span>
+                </div>
+
+                <div class="error-message" id="errorMessage">
+                    Usuario o contraseña incorrectos
+                </div>
+
+                <button type="submit" class="login-btn">
+                    <i class="fas fa-sign-in-alt"></i> Iniciar Sesión
+                </button>
+            </form>
+
+            <div class="zenith-marker">
+                ⏄ INNOVACIÓN CONFIABLE ⏄
+            </div>
+        </div>
+    </div>
+<script src="login.js"></script>
+  
+</body>
+</html>

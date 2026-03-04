@@ -1,0 +1,920 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0B1120;
+            font-family: 'Poppins', 'Roboto', sans-serif;
+            min-height: 100vh;
+            padding: 2rem 1.5rem;
+            background-image: radial-gradient(circle at 10% 10%, rgba(59, 130, 246, 0.03) 0%, transparent 30%),
+                              radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.02) 0%, transparent 35%);
+        }
+
+      
+ /* Navbar fijo arriba */
+        .navbar {
+            background: rgba(31, 41, 55, 0.75);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-bottom: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 4px 20px -8px rgba(0, 0, 0, 0.5);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 0.8rem 0;
+            width: 100%;
+        }
+
+        /* Contenedor del formulario - centrado manualmente */
+        .register-container {
+            width: 100%;
+            max-width: 520px;
+            background: rgba(31, 41, 55, 0.75);
+            backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6);
+            padding: 2.8rem 2.5rem;
+            transition: transform 0.2s ease;
+            /* Centrar el formulario */
+            margin: 3rem auto;
+        }
+
+        /* Hover effects para los links */
+        .navbar a[href="#inicio"]:hover span,
+        .navbar a[href="#cursos"]:hover span,
+        .navbar a[href="#asignaturas"]:hover span,
+        .navbar a[href="#nosotros"]:hover span {
+            width: 100% !important;
+        }
+
+        .navbar a[href="#inicio"]:hover,
+        .navbar a[href="#cursos"]:hover,
+        .navbar a[href="#asignaturas"]:hover,
+        .navbar a[href="#nosotros"]:hover {
+            color: #3B82F6 !important;
+            text-shadow: 0 0 8px #3B82F6;
+        }
+
+        .navbar a[href="#contacto"]:hover {
+            background: #3B82F6 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px #3B82F6 !important;
+        }
+
+        .navbar a[href="#login"]:hover {
+            background: #2d3748 !important;
+            border-color: #3B82F6 !important;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -8px #3B82F6 !important;
+        }
+
+        .navbar a[href="#registro"]:hover {
+            background: #2563eb !important;
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -8px #3B82F6 !important;
+        }
+
+        .navbar::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #3B82F6, transparent);
+            opacity: 0.3;
+        }
+        /* ===== NOTIFICACIONES (igual que panel admin) ===== */
+        .notifications-bar {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            padding: 0.5rem 0;
+        }
+
+        .notifications-icons {
+            display: flex;
+            gap: 1rem;
+            background: rgba(31, 41, 55, 0.3);
+            padding: 0.5rem 1rem;
+            border-radius: 40px;
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .notifications-icons i {
+            font-size: 1.3rem;
+            color: #9BB5D9;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .notifications-icons i:hover {
+            color: #3B82F6;
+            transform: scale(1.1);
+        }
+
+        .user-profile-mini {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            background: rgba(59, 130, 246, 0.1);
+            padding: 0.3rem 1rem 0.3rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .user-profile-mini span {
+            color: #F0F9FF;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .user-profile-mini img {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #3B82F6;
+            object-fit: cover;
+        }
+
+        /* Contenedor principal */
+        .courses-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.1) inset;
+            padding: 2.8rem 2.5rem;
+        }
+
+        /* Header / Branding */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .brand-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem auto;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .brand-icon i {
+            font-size: 2.5rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 15px #3B82F6);
+        }
+
+        .brand-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(59, 130, 246, 0.15);
+        }
+
+        .brand-header .sub {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #A0B3D9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .header-dots span {
+            width: 8px;
+            height: 8px;
+            background: #3B82F6;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #3B82F6;
+            opacity: 0.6;
+        }
+
+        /* Filtros / Categorías */
+        .filters-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-chip {
+            background: rgba(240, 249, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            font-size: 0.95rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3B82F6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filter-chip.active {
+            background: #3B82F6;
+            color: #F0F9FF;
+            font-weight: 500;
+        }
+
+        /* Grid de cursos */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Tarjeta de curso */
+        .course-card {
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: #3B82F6;
+            box-shadow: 0 20px 30px -15px #3B82F6, 0 0 0 1px rgba(59, 130, 246, 0.3) inset;
+        }
+
+        .card-image {
+            height: 160px;
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(31, 41, 55, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .card-image i {
+            font-size: 4rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 15px #3B82F6);
+            opacity: 0.8;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #3B82F6;
+            color: #F0F9FF;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 15px #3B82F6;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-content {
+            padding: 1.8rem 1.5rem 1.5rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #F0F9FF;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #B0C7E9;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #9BB5D9;
+        }
+
+        .meta-item i {
+            color: #3B82F6;
+            font-size: 0.9rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #3B82F6;
+            text-shadow: 0 0 10px #3B82F6;
+        }
+
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #9BB5D9;
+            text-shadow: none;
+        }
+
+        .btn-card {
+            background: transparent;
+            border: 1px solid #3B82F6;
+            border-radius: 30px;
+            padding: 0.6rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-card:hover {
+            background: #3B82F6;
+            box-shadow: 0 0 20px #3B82F6;
+            transform: scale(1.05);
+        }
+
+        .btn-card i {
+            font-size: 0.8rem;
+        }
+
+        /* Sección de características / por qué elegirnos */
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: #3B82F6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -15px #3B82F6;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #3B82F6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #F0F9FF;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #9BB5D9;
+            line-height: 1.6;
+        }
+
+        /* CTA final */
+        .cta-section {
+            text-align: center;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #F0F9FF;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #B0C7E9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            background: #3B82F6;
+            border: none;
+            border-radius: 40px;
+            padding: 1.2rem 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 25px -10px #3B82F6;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-cta:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+            box-shadow: 0 20px 30px -10px #3B82F6;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #5F7A9F;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-note span {
+            color: #3B82F6;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .courses-container {
+                padding: 1.8rem 1.2rem;
+            }
+            .brand-header h1 {
+                font-size: 2rem;
+            }
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+        }
+  
+        /* Contenedor principal con glassmorphism */
+        .courses-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            background: rgba(31, 41, 55, 0.7);
+            backdrop-filter: blur(12px) saturate(180%);
+            -webkit-backdrop-filter: blur(12px) saturate(180%);
+            border-radius: 20px;
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            box-shadow: 0 25px 40px -12px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(59, 130, 246, 0.1) inset;
+            padding: 2.8rem 2.5rem;
+        }
+
+        /* Header / Branding */
+        .brand-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .brand-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem auto;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(59, 130, 246, 0.25);
+        }
+
+        .brand-icon i {
+            font-size: 2.5rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 15px #3B82F6);
+        }
+
+        .brand-header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 2.8rem;
+            letter-spacing: -1px;
+            background: linear-gradient(180deg, #F0F9FF 0%, #e0f0fe 90%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 2px 5px rgba(59, 130, 246, 0.15);
+        }
+
+        .brand-header .sub {
+            font-weight: 300;
+            font-size: 1.2rem;
+            color: #A0B3D9;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .header-dots {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: center;
+            margin-top: 1.5rem;
+        }
+
+        .header-dots span {
+            width: 8px;
+            height: 8px;
+            background: #3B82F6;
+            border-radius: 12px;
+            box-shadow: 0 0 12px #3B82F6;
+            opacity: 0.6;
+        }
+
+        /* Filtros / Categorías */
+        .filters-section {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .filter-chip {
+            background: rgba(240, 249, 255, 0.03);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 40px;
+            padding: 0.7rem 1.8rem;
+            font-size: 0.95rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            font-weight: 400;
+            letter-spacing: 0.3px;
+        }
+
+        .filter-chip:hover, .filter-chip.active {
+            background: rgba(59, 130, 246, 0.15);
+            border-color: #3B82F6;
+            box-shadow: 0 0 15px rgba(59, 130, 246, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .filter-chip.active {
+            background: #3B82F6;
+            color: #F0F9FF;
+            font-weight: 500;
+        }
+
+        /* Grid de cursos */
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        /* Tarjeta de curso */
+        .course-card {
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            overflow: hidden;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .course-card:hover {
+            transform: translateY(-8px);
+            border-color: #3B82F6;
+            box-shadow: 0 20px 30px -15px #3B82F6, 0 0 0 1px rgba(59, 130, 246, 0.3) inset;
+        }
+
+        .card-image {
+            height: 160px;
+            background: linear-gradient(145deg, rgba(59, 130, 246, 0.1), rgba(31, 41, 55, 0.4));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            border-bottom: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .card-image i {
+            font-size: 4rem;
+            color: #3B82F6;
+            filter: drop-shadow(0 0 15px #3B82F6);
+            opacity: 0.8;
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: #3B82F6;
+            color: #F0F9FF;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 0 15px #3B82F6;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .card-content {
+            padding: 1.8rem 1.5rem 1.5rem;
+            flex: 1;
+        }
+
+        .card-title {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #F0F9FF;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-description {
+            font-size: 0.95rem;
+            color: #B0C7E9;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .card-meta {
+            display: flex;
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: #9BB5D9;
+        }
+
+        .meta-item i {
+            color: #3B82F6;
+            font-size: 0.9rem;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(59, 130, 246, 0.15);
+        }
+
+        .price {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: #3B82F6;
+            text-shadow: 0 0 10px #3B82F6;
+        }
+
+        .price small {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #9BB5D9;
+            text-shadow: none;
+        }
+
+        .btn-card {
+            background: transparent;
+            border: 1px solid #3B82F6;
+            border-radius: 30px;
+            padding: 0.6rem 1.5rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-card:hover {
+            background: #3B82F6;
+            box-shadow: 0 0 20px #3B82F6;
+            transform: scale(1.05);
+        }
+
+        .btn-card i {
+            font-size: 0.8rem;
+        }
+
+        /* Sección de características / por qué elegirnos */
+        .features-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            background: rgba(240, 249, 255, 0.02);
+            border: 1px solid rgba(59, 130, 246, 0.15);
+            border-radius: 20px;
+            padding: 2rem 1.5rem;
+            backdrop-filter: blur(4px);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            border-color: #3B82F6;
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px -15px #3B82F6;
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 1.2rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            color: #3B82F6;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .feature-item h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: #F0F9FF;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #9BB5D9;
+            line-height: 1.6;
+        }
+
+        /* CTA final */
+        .cta-section {
+            text-align: center;
+            background: rgba(59, 130, 246, 0.08);
+            border-radius: 20px;
+            padding: 3rem;
+            margin-top: 3rem;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        .cta-section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 2rem;
+            color: #F0F9FF;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #B0C7E9;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-cta {
+            background: #3B82F6;
+            border: none;
+            border-radius: 40px;
+            padding: 1.2rem 3rem;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.2rem;
+            color: #F0F9FF;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 15px 25px -10px #3B82F6;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-cta:hover {
+            background: #2563eb;
+            transform: scale(1.05);
+            box-shadow: 0 20px 30px -10px #3B82F6;
+        }
+
+        .footer-note {
+            text-align: center;
+            margin-top: 3rem;
+            font-size: 0.85rem;
+            color: #5F7A9F;
+            letter-spacing: 1.5px;
+        }
+
+        .footer-note span {
+            color: #3B82F6;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            .courses-container {
+                padding: 1.8rem 1.2rem;
+            }
+            .brand-header h1 {
+                font-size: 2rem;
+            }
+            .cta-section {
+                padding: 2rem 1rem;
+            }
+            .cta-section h2 {
+                font-size: 1.5rem;
+            }
+        }
